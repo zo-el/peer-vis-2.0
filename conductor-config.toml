@@ -11,8 +11,8 @@ public_address = 'HcScjN8wBwrn3tuyg89aab3a69xsIgdzmX5P9537BqQZ5A7TEZu7qCY4Xzzjhm
 test_agent = true
 
 [[dnas]]
-file = '/home/zo-el/Documents/GitRepo/Personal/PeerVis-2.0/dist/PeerVis-2.0.dna.json'
-hash = 'QmYXYgHoGv1q35Xmzk5tGaLY1gFFEYgCiUWHJEuwpG36nM'
+file = '/home/zo-el/Documents/GitRepo/Personal/peer-vis-2.0/dist/peer-vis-2.0.dna.json'
+hash = 'QmcK5VUz9LVPnQDBjNtj1NXfXQ1M3DJ7GDLREjuDnhJrKw'
 id = 'hc-run-dna'
 
 [[instances]]
@@ -20,7 +20,7 @@ agent = 'hc-run-agent'
 dna = 'hc-run-dna'
 id = 'test-instance'
 
-[instances.storage]6
+[instances.storage]
 type = 'memory'
 
 [[interfaces]]

@@ -2,7 +2,7 @@ const _ = require('lodash')
 const path = require('path')
 const { Config } = require('@holochain/tryorama')
 
-const dnaPath = path.join(__dirname, "../dist/PeerVis-2.0.dna.json")
+const dnaPath = path.join(__dirname, "../dist/peer-vis-2.0.dna.json")
 const dna = Config.dna(dnaPath, 'app-spec')
 
 const networkType = "sim2h"
