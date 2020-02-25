@@ -1,0 +1,14 @@
+{
+  "name": "Peer Vis",
+  "description": "This is a mixin for checking the Peers in your network",
+  "authors": [
+    {
+      "identifier": "Zo-el <joelulahanna@gmail.com>",
+      "public_key_source": "",
+      "signature": ""
+    }
+  ],
+  "version": "0.0.1",
+  "dht": {},
+  "properties": null
+}

@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title>PeerVis</title>
+    <script type="text/javascript" src="./cytoscape.min.js"></script>
+    <style>
+      div#vis {
+          width: 100%;
+          height: 100%;
+          background: #DDD;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="vis"></div>
+
+    <script type="text/javascript" src="hc-web-client-0.5.1.browser.min.js"></script>
+    <script type="text/javascript">
+    var cy
+    var currentPeers = ""
+    var instance_id = "test-instance"
+    var port = 8888
+    const url =  'ws://localhost:'+port+"/"
+    console.log("Connecting to conductor instance "+instance_id+" on localhost:"+port)
+    window.holochainclient.connect({url: "ws://localhost:8888"}).then(({callZome, close}) => {
+
+
+        window.setInterval(function() {
+          call(addResultsToPage)
+        }, 1000)
+
+        console.log("Connected...");
+
+        function call (callback) {
+          callZome(instance_id, 'peer_vis', 'get_peers')({}).then(result => {
+             if(JSON.parse(result).Ok){
+               result = JSON.parse(result).Ok
+               console.log("Response: ", result)
+               callback(result)
+             }
+             close()
+          })
+        }
+
+    })
+      function addResultsToPage(peers) {
+        var peersTest = peers.sort().join('')
+        var isSame = peersTest === currentPeers
+        if (isSame) {
+          console.log('peer list is same')
+          // dont update, if peer list is the same
+          return
+        }
+        console.log('peer list is different')
+        // update the currentPeers cache
+        currentPeers = peersTest
+        if (cy) cy.destroy()
+        var elements = []
+        peers.forEach(function(p) {
+          elements.push({
+            group: 'nodes',
+            data: {
+              id: p.address
+            },
+            style: {
+              label: p.me ? "(me) " + p.address : p.address
+            }
+          })
+        })
+        cy = cytoscape({
+          container: document.getElementById('vis'),
+          elements: elements
+        })
+      }
+
+    </script>
+  </body>
+</html>
